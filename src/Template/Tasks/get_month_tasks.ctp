@@ -17,4 +17,5 @@
 <div class="tasks index large-9 medium-8 columns content">
     <h3><?= __('Filtered Tasks') ?></h3>
     <?php echo var_dump($tasks) ?>
+
 </div>

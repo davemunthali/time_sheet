@@ -141,7 +141,7 @@ class TasksController extends AppController
                     'date_of_creation <=' => $end_date
                 ]
             ]
-        );
+        )->contain(['Donors', 'Users']);
         $tasks = $tasks->all();
         $this->set(compact('tasks'));
     }
