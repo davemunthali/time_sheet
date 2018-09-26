@@ -111,4 +111,9 @@ class TasksController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public function get_month_tasks($startDate, $endDate){
+        $this->Tasks->contain(['Donors','Users']);
+        $tasks=$this->Tasks->find('all',['conditions'=>['date_of_creation>='=>$startDate,'date_of_creation<='=>$endDate]]);
+        $this->set(compact('tasks'));
+    }
 }
