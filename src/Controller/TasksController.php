@@ -111,9 +111,38 @@ class TasksController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    public function get_month_tasks($startDate, $endDate){
-        $this->Tasks->contain(['Donors','Users']);
-        $tasks=$this->Tasks->find('all',['conditions'=>['date_of_creation>='=>$startDate,'date_of_creation<='=>$endDate]]);
+
+    /**
+     * Function to fetch filtered list of tasks
+     * 
+     * @return void
+     */
+    public function getMonthTasks()
+    {
+        if (empty($start_date) && empty($end_date)) {
+            $start_date = date('Y-m-d');
+            $end_date = date('Y-m-d', strtotime('+1 month'));
+        } else {
+            $start_date = $this->request->query['start_date'];
+            $end_date = $this->request->query['end_date'];
+        }
+        /*$this->Tasks->contain(
+            [
+                'Donors',
+                'Users'
+            ]
+        );*/
+
+        $tasks = $this->Tasks->find(
+            'all',
+            [
+                'conditions' => [
+                    'date_of_creation >=' => $start_date,
+                    'date_of_creation <=' => $end_date
+                ]
+            ]
+        );
+        $tasks = $tasks->all();
         $this->set(compact('tasks'));
     }
 }
