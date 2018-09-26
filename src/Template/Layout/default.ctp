@@ -40,9 +40,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
             </li>
         </ul>
+<<<<<<< HEAD
         <div class="top-bar-section">
 
         </div>
+=======
+>>>>>>> e908691cdfb3908771cd16ba195f5d06f61a0b58
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
