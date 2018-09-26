@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \App\Model\Table\DepartmentsTable|\Cake\ORM\Association\BelongsTo $Departments
- * @property \App\Model\Table\TimesheetsTable|\Cake\ORM\Association\HasMany $Timesheets
+ * @property \App\Model\Table\TasksTable|\Cake\ORM\Association\HasMany $Tasks
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -41,7 +41,7 @@ class UsersTable extends Table
         $this->belongsTo('Departments', [
             'foreignKey' => 'department_id'
         ]);
-        $this->hasMany('Timesheets', [
+        $this->hasMany('Tasks', [
             'foreignKey' => 'user_id'
         ]);
     }

@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  * @property string $password
  *
  * @property \App\Model\Entity\Department $department
- * @property \App\Model\Entity\Timesheet[] $timesheets
+ * @property \App\Model\Entity\Task[] $tasks
  */
 class User extends Entity
 {
@@ -35,7 +35,7 @@ class User extends Entity
         'email' => true,
         'password' => true,
         'department' => true,
-        'timesheets' => true
+        'tasks' => true
     ];
 
     /**

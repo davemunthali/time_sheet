@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  *
- * @property \App\Model\Entity\Activity[] $activities
+ * @property \App\Model\Entity\Task[] $tasks
  */
 class Donor extends Entity
 {
@@ -25,6 +25,6 @@ class Donor extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'activities' => true
+        'tasks' => true
     ];
 }

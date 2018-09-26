@@ -7,10 +7,14 @@ use Cake\ORM\Entity;
  * Task Entity
  *
  * @property int $id
- * @property string $name
- * @property int $activity_id
+ * @property \Cake\I18n\FrozenDate $date_of_creation
+ * @property int $donor_id
+ * @property float $hours
+ * @property string $comment
+ * @property int $user_id
  *
- * @property \App\Model\Entity\Activity $activity
+ * @property \App\Model\Entity\Donor $donor
+ * @property \App\Model\Entity\User $user
  */
 class Task extends Entity
 {
@@ -25,8 +29,12 @@ class Task extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'activity_id' => true,
-        'activity' => true
+        'date_of_creation' => true,
+        'donor_id' => true,
+        'hours' => true,
+        'comment' => true,
+        'user_id' => true,
+        'donor' => true,
+        'user' => true
     ];
 }

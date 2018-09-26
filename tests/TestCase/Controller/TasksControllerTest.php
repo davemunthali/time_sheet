@@ -17,7 +17,8 @@ class TasksControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.tasks',
-        'app.activities'
+        'app.donors',
+        'app.users'
     ];
 
     /**

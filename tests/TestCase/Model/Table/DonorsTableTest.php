@@ -25,7 +25,7 @@ class DonorsTableTest extends TestCase
      */
     public $fixtures = [
         'app.donors',
-        'app.activities'
+        'app.tasks'
     ];
 
     /**

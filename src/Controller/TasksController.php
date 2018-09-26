@@ -21,7 +21,7 @@ class TasksController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Activities']
+            'contain' => ['Donors', 'Users']
         ];
         $tasks = $this->paginate($this->Tasks);
 
@@ -38,7 +38,7 @@ class TasksController extends AppController
     public function view($id = null)
     {
         $task = $this->Tasks->get($id, [
-            'contain' => ['Activities']
+            'contain' => ['Donors', 'Users']
         ]);
 
         $this->set('task', $task);
@@ -61,8 +61,9 @@ class TasksController extends AppController
             }
             $this->Flash->error(__('The task could not be saved. Please, try again.'));
         }
-        $activities = $this->Tasks->Activities->find('list', ['limit' => 200]);
-        $this->set(compact('task', 'activities'));
+        $donors = $this->Tasks->Donors->find('list', ['limit' => 200]);
+        $users = $this->Tasks->Users->find('list', ['limit' => 200]);
+        $this->set(compact('task', 'donors', 'users'));
     }
 
     /**
@@ -86,8 +87,9 @@ class TasksController extends AppController
             }
             $this->Flash->error(__('The task could not be saved. Please, try again.'));
         }
-        $activities = $this->Tasks->Activities->find('list', ['limit' => 200]);
-        $this->set(compact('task', 'activities'));
+        $donors = $this->Tasks->Donors->find('list', ['limit' => 200]);
+        $users = $this->Tasks->Users->find('list', ['limit' => 200]);
+        $this->set(compact('task', 'donors', 'users'));
     }
 
     /**

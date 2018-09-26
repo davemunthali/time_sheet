@@ -9,7 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Tasks Model
  *
- * @property \App\Model\Table\ActivitiesTable|\Cake\ORM\Association\BelongsTo $Activities
+ * @property \App\Model\Table\DonorsTable|\Cake\ORM\Association\BelongsTo $Donors
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
  *
  * @method \App\Model\Entity\Task get($primaryKey, $options = [])
  * @method \App\Model\Entity\Task newEntity($data = null, array $options = [])
@@ -34,11 +35,14 @@ class TasksTable extends Table
         parent::initialize($config);
 
         $this->setTable('tasks');
-        $this->setDisplayField('name');
+        $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Activities', [
-            'foreignKey' => 'activity_id'
+        $this->belongsTo('Donors', [
+            'foreignKey' => 'donor_id'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id'
         ]);
     }
 
@@ -55,9 +59,17 @@ class TasksTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 255)
-            ->allowEmpty('name');
+            ->date('date_of_creation')
+            ->requirePresence('date_of_creation', 'create')
+            ->notEmpty('date_of_creation');
+
+        $validator
+            ->numeric('hours')
+            ->allowEmpty('hours');
+
+        $validator
+            ->scalar('comment')
+            ->allowEmpty('comment');
 
         return $validator;
     }
@@ -71,7 +83,8 @@ class TasksTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['activity_id'], 'Activities'));
+        $rules->add($rules->existsIn(['donor_id'], 'Donors'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
     }

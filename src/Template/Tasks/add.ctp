@@ -8,8 +8,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Tasks'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Activities'), ['controller' => 'Activities', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Activity'), ['controller' => 'Activities', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Donors'), ['controller' => 'Donors', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Donor'), ['controller' => 'Donors', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="tasks form large-9 medium-8 columns content">
@@ -17,8 +19,11 @@
     <fieldset>
         <legend><?= __('Add Task') ?></legend>
         <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('activity_id', ['options' => $activities, 'empty' => true]);
+            echo $this->Form->control('date_of_creation');
+            echo $this->Form->control('donor_id', ['options' => $donors, 'empty' => true]);
+            echo $this->Form->control('hours');
+            echo $this->Form->control('comment');
+            echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

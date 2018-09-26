@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Donors Model
  *
- * @property \App\Model\Table\ActivitiesTable|\Cake\ORM\Association\HasMany $Activities
+ * @property \App\Model\Table\TasksTable|\Cake\ORM\Association\HasMany $Tasks
  *
  * @method \App\Model\Entity\Donor get($primaryKey, $options = [])
  * @method \App\Model\Entity\Donor newEntity($data = null, array $options = [])
@@ -37,7 +37,7 @@ class DonorsTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('Activities', [
+        $this->hasMany('Tasks', [
             'foreignKey' => 'donor_id'
         ]);
     }

@@ -13,8 +13,8 @@
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Departments'), ['controller' => 'Departments', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Department'), ['controller' => 'Departments', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Timesheets'), ['controller' => 'Timesheets', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Timesheet'), ['controller' => 'Timesheets', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Tasks'), ['controller' => 'Tasks', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Task'), ['controller' => 'Tasks', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="users view large-9 medium-8 columns content">
@@ -46,24 +46,30 @@
         </tr>
     </table>
     <div class="related">
-        <h4><?= __('Related Timesheets') ?></h4>
-        <?php if (!empty($user->timesheets)): ?>
+        <h4><?= __('Related Tasks') ?></h4>
+        <?php if (!empty($user->tasks)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Date Created') ?></th>
+                <th scope="col"><?= __('Date Of Creation') ?></th>
+                <th scope="col"><?= __('Donor Id') ?></th>
+                <th scope="col"><?= __('Hours') ?></th>
+                <th scope="col"><?= __('Comment') ?></th>
                 <th scope="col"><?= __('User Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($user->timesheets as $timesheets): ?>
+            <?php foreach ($user->tasks as $tasks): ?>
             <tr>
-                <td><?= h($timesheets->id) ?></td>
-                <td><?= h($timesheets->date_created) ?></td>
-                <td><?= h($timesheets->user_id) ?></td>
+                <td><?= h($tasks->id) ?></td>
+                <td><?= h($tasks->date_of_creation) ?></td>
+                <td><?= h($tasks->donor_id) ?></td>
+                <td><?= h($tasks->hours) ?></td>
+                <td><?= h($tasks->comment) ?></td>
+                <td><?= h($tasks->user_id) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Timesheets', 'action' => 'view', $timesheets->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Timesheets', 'action' => 'edit', $timesheets->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Timesheets', 'action' => 'delete', $timesheets->id], ['confirm' => __('Are you sure you want to delete # {0}?', $timesheets->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['controller' => 'Tasks', 'action' => 'view', $tasks->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Tasks', 'action' => 'edit', $tasks->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Tasks', 'action' => 'delete', $tasks->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tasks->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

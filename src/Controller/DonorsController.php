@@ -35,7 +35,7 @@ class DonorsController extends AppController
     public function view($id = null)
     {
         $donor = $this->Donors->get($id, [
-            'contain' => ['Activities']
+            'contain' => ['Tasks']
         ]);
 
         $this->set('donor', $donor);

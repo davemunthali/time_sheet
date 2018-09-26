@@ -8,8 +8,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Task'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Activities'), ['controller' => 'Activities', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Activity'), ['controller' => 'Activities', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Donors'), ['controller' => 'Donors', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Donor'), ['controller' => 'Donors', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="tasks index large-9 medium-8 columns content">
@@ -18,8 +20,10 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('activity_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('date_of_creation') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('donor_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('hours') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -27,8 +31,10 @@
             <?php foreach ($tasks as $task): ?>
             <tr>
                 <td><?= $this->Number->format($task->id) ?></td>
-                <td><?= h($task->name) ?></td>
-                <td><?= $task->has('activity') ? $this->Html->link($task->activity->id, ['controller' => 'Activities', 'action' => 'view', $task->activity->id]) : '' ?></td>
+                <td><?= h($task->date_of_creation) ?></td>
+                <td><?= $task->has('donor') ? $this->Html->link($task->donor->name, ['controller' => 'Donors', 'action' => 'view', $task->donor->id]) : '' ?></td>
+                <td><?= $this->Number->format($task->hours) ?></td>
+                <td><?= $task->has('user') ? $this->Html->link($task->user->name, ['controller' => 'Users', 'action' => 'view', $task->user->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $task->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $task->id]) ?>
