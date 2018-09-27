@@ -70,4 +70,32 @@ class TasksControllerTest extends IntegrationTestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test getMonthTasks route without args; method
+     *
+     * @return void
+     */
+    public function testCanGetMonthTasksWithoutArgs()
+    {
+        $this->get('/tasks/getMonthTasks');
+        $this->assertResponseOk();
+        $this->assertResponseContains('tasks');
+    }
+
+    /**
+     * Test getMonthTasks route with args; method
+     *
+     * @return void
+     */
+    public function testCanGetMonthTasksWithArgs()
+    {
+        //create start and end dates
+        $start_date = date('Y-m-d');
+        $end_date = date('Y-m-d', strtotime('+1 month'));
+
+        $this->get("/tasks/getMonthTasks?start_date=$start_date&end_date=$end_date");
+        $this->assertResponseOk();
+        $this->assertResponseContains('tasks');
+    }
 }
