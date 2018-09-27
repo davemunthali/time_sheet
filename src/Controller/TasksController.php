@@ -126,20 +126,17 @@ class TasksController extends AppController
             $start_date = $this->request->query['start_date'];
             $end_date = $this->request->query['end_date'];
         }
-        /*$this->Tasks->contain(
-            [
-                'Donors',
-                'Users'
-            ]
-        );*/
 
         $tasks = $this->Tasks->find(
             'all',
             [
                 'conditions' => [
-                    'date_of_creation >=' => $start_date,
-                    'date_of_creation <=' => $end_date
-                ]
+                    'AND' => [
+                        'date_of_creation >=' => $start_date,
+                        'date_of_creation <=' => $end_date
+                    ]
+                ],
+                'order' => ['date_of_creation ASC', 'donor_id ASC']
             ]
         )->contain(['Donors', 'Users']);
         $tasks = $tasks->all();
