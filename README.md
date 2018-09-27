@@ -9,3 +9,7 @@
 6. Adjust the database configurations under 'default' in app.php accordingly
 7. Adjust the test database configurations under 'test' in app.php accordingly
 8. Test by navigating to the application in the browser
+
+#how-to-test
+1. Go to application dir
+2. Run vendor/bin/phpunit --verbose
